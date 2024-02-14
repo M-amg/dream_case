@@ -1,0 +1,94 @@
+openapi: 3.0.0
+info:
+  title: API for dream case crud
+  version: 1.0.0
+paths:
+  /api/v1/cases/{caseID}:
+    get:
+      summary: Retrieve case by id
+      operationId: readCase
+      tags:
+        - cases
+      parameters:
+        - $ref: './commons/commons.yaml/#/components/parameters/caseID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+        default:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "./commons/commons.yaml#/components/schemas/Error"
+    put:
+      summary: update case
+      operationId: updateCase
+      tags:
+        - cases
+      parameters:
+        - $ref: './commons/commons.yaml/#/components/parameters/caseID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+        default:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "./commons/commons.yaml#/components/schemas/Error"
+    delete:
+      summary: Delete case by id
+      operationId: deleteCase
+      tags:
+        - cases
+      parameters:
+        - $ref: './commons/commons.yaml/#/components/parameters/caseID'
+      responses:
+        '200':
+          description: Successful operation
+        default:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "./commons/commons.yaml#/components/schemas/Error"
+
+  /api/v1/cases:
+    post:
+      summary: create case
+      operationId: createCase
+      tags:
+        - cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./commons/commons.yaml/#/components/schemas/CaseRequest"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+        default:
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: "./commons/commons.yaml#/components/schemas/Error"
+

@@ -1,0 +1,43 @@
+components:
+  parameters:
+    caseID:
+      name: caseID
+      in: path
+      description: case id
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    CaseRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+    CaseResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: date
+        title:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+

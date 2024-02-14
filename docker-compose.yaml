@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=dream_case'
+      - 'POSTGRES_PASSWORD=case_pwd'
+      - 'POSTGRES_USER=case_user'
+    ports:
+      - '5432'
