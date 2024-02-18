@@ -5,8 +5,7 @@
  */
 package com.dreamcase.app.api;
 
-import com.dreamcase.app.dto.CaseRequestDto;
-import com.dreamcase.app.dto.CaseResponseDto;
+import com.dreamcase.app.dto.CaseDto;
 import com.dreamcase.app.dto.ErrorDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-02-14T22:13:34.404407400+01:00[Africa/Casablanca]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-02-18T16:32:11.938885200+01:00[Africa/Casablanca]")
 @Validated
 @Tag(name = "cases", description = "the cases API")
 public interface CasesApi {
@@ -46,8 +45,8 @@ public interface CasesApi {
     /**
      * POST /api/v1/cases : create case
      *
-     * @param caseRequestDto  (optional)
-     * @return Successful operation (status code 200)
+     * @param caseDto  (optional)
+     * @return Successful operation (status code 201)
      *         or error (status code 200)
      */
     @Operation(
@@ -55,8 +54,8 @@ public interface CasesApi {
         summary = "create case",
         tags = { "cases" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CaseResponseDto.class)))
+            @ApiResponse(responseCode = "201", description = "Successful operation", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = CaseDto.class))
             }),
             @ApiResponse(responseCode = "default", description = "error", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
@@ -70,18 +69,13 @@ public interface CasesApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<List<CaseResponseDto>> _createCase(
-        @Parameter(name = "CaseRequestDto", description = "") @Valid @RequestBody(required = false) CaseRequestDto caseRequestDto
+    default ResponseEntity<CaseDto> createCase(
+        @Parameter(name = "CaseDto", description = "") @Valid @RequestBody(required = false) CaseDto caseDto
     ) {
-        return createCase(caseRequestDto);
-    }
-
-    // Override this method
-    default  ResponseEntity<List<CaseResponseDto>> createCase(CaseRequestDto caseRequestDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }, { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" } ]";
+                    String exampleString = "{ \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -116,14 +110,9 @@ public interface CasesApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<Void> _deleteCase(
+    default ResponseEntity<Void> deleteCase(
         @Parameter(name = "caseID", description = "case id", required = true, in = ParameterIn.PATH) @PathVariable("caseID") Long caseID
     ) {
-        return deleteCase(caseID);
-    }
-
-    // Override this method
-    default  ResponseEntity<Void> deleteCase(Long caseID) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -142,7 +131,7 @@ public interface CasesApi {
         tags = { "cases" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CaseResponseDto.class)))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = CaseDto.class))
             }),
             @ApiResponse(responseCode = "default", description = "error", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
@@ -155,18 +144,13 @@ public interface CasesApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<List<CaseResponseDto>> _readCase(
+    default ResponseEntity<CaseDto> readCase(
         @Parameter(name = "caseID", description = "case id", required = true, in = ParameterIn.PATH) @PathVariable("caseID") Long caseID
     ) {
-        return readCase(caseID);
-    }
-
-    // Override this method
-    default  ResponseEntity<List<CaseResponseDto>> readCase(Long caseID) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }, { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" } ]";
+                    String exampleString = "{ \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -181,6 +165,7 @@ public interface CasesApi {
      * PUT /api/v1/cases/{caseID} : update case
      *
      * @param caseID case id (required)
+     * @param caseDto  (optional)
      * @return Successful operation (status code 200)
      *         or error (status code 200)
      */
@@ -190,7 +175,7 @@ public interface CasesApi {
         tags = { "cases" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CaseResponseDto.class)))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = CaseDto.class))
             }),
             @ApiResponse(responseCode = "default", description = "error", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
@@ -200,21 +185,18 @@ public interface CasesApi {
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/api/v1/cases/{caseID}",
-        produces = { "application/json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     
-    default ResponseEntity<List<CaseResponseDto>> _updateCase(
-        @Parameter(name = "caseID", description = "case id", required = true, in = ParameterIn.PATH) @PathVariable("caseID") Long caseID
+    default ResponseEntity<CaseDto> updateCase(
+        @Parameter(name = "caseID", description = "case id", required = true, in = ParameterIn.PATH) @PathVariable("caseID") Long caseID,
+        @Parameter(name = "CaseDto", description = "") @Valid @RequestBody(required = false) CaseDto caseDto
     ) {
-        return updateCase(caseID);
-    }
-
-    // Override this method
-    default  ResponseEntity<List<CaseResponseDto>> updateCase(Long caseID) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }, { \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" } ]";
+                    String exampleString = "{ \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"description\" : \"description\", \"id\" : 0, \"title\" : \"title\", \"updatedAt\" : \"\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

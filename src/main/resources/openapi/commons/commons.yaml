@@ -9,15 +9,11 @@ components:
         type: integer
         format: int64
   schemas:
-    CaseRequest:
+    Case:
       type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-    CaseResponse:
-      type: object
+      required:
+        - title
+        - description
       properties:
         id:
           type: integer

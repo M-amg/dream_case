@@ -17,9 +17,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+                $ref: './commons/commons.yaml#/components/schemas/Case'
         default:
           description: error
           content:
@@ -33,15 +31,18 @@ paths:
         - cases
       parameters:
         - $ref: './commons/commons.yaml/#/components/parameters/caseID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./commons/commons.yaml/#/components/schemas/Case"
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+                $ref: './commons/commons.yaml#/components/schemas/Case'
         default:
           description: error
           content:
@@ -75,16 +76,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./commons/commons.yaml/#/components/schemas/CaseRequest"
+              $ref: "./commons/commons.yaml/#/components/schemas/Case"
       responses:
-        '200':
+        '201':
           description: Successful operation
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: './commons/commons.yaml#/components/schemas/CaseResponse'
+                $ref: './commons/commons.yaml#/components/schemas/Case'
         default:
           description: error
           content:

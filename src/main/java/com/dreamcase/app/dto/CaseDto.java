@@ -18,15 +18,15 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * CaseResponseDto
+ * CaseDto
  */
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
 @lombok.Builder
 
-@JsonTypeName("CaseResponse")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-02-14T22:13:34.404407400+01:00[Africa/Casablanca]")
-public class CaseResponseDto {
+@JsonTypeName("Case")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-02-18T16:32:11.938885200+01:00[Africa/Casablanca]")
+public class CaseDto {
 
   private Long id;
 
@@ -39,7 +39,7 @@ public class CaseResponseDto {
 
   private String description;
 
-  public CaseResponseDto id(Long id) {
+  public CaseDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -59,7 +59,7 @@ public class CaseResponseDto {
     this.id = id;
   }
 
-  public CaseResponseDto createdAt(OffsetDateTime createdAt) {
+  public CaseDto createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -79,7 +79,7 @@ public class CaseResponseDto {
     this.createdAt = createdAt;
   }
 
-  public CaseResponseDto updatedAt(LocalDate updatedAt) {
+  public CaseDto updatedAt(LocalDate updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -99,7 +99,7 @@ public class CaseResponseDto {
     this.updatedAt = updatedAt;
   }
 
-  public CaseResponseDto title(String title) {
+  public CaseDto title(String title) {
     this.title = title;
     return this;
   }
@@ -108,8 +108,8 @@ public class CaseResponseDto {
    * Get title
    * @return title
   */
-  
-  @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "title", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("title")
   public String getTitle() {
     return title;
@@ -119,7 +119,7 @@ public class CaseResponseDto {
     this.title = title;
   }
 
-  public CaseResponseDto description(String description) {
+  public CaseDto description(String description) {
     this.description = description;
     return this;
   }
@@ -128,8 +128,8 @@ public class CaseResponseDto {
    * Get description
    * @return description
   */
-  
-  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("description")
   public String getDescription() {
     return description;
@@ -147,12 +147,12 @@ public class CaseResponseDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CaseResponseDto caseResponse = (CaseResponseDto) o;
-    return Objects.equals(this.id, caseResponse.id) &&
-        Objects.equals(this.createdAt, caseResponse.createdAt) &&
-        Objects.equals(this.updatedAt, caseResponse.updatedAt) &&
-        Objects.equals(this.title, caseResponse.title) &&
-        Objects.equals(this.description, caseResponse.description);
+    CaseDto _case = (CaseDto) o;
+    return Objects.equals(this.id, _case.id) &&
+        Objects.equals(this.createdAt, _case.createdAt) &&
+        Objects.equals(this.updatedAt, _case.updatedAt) &&
+        Objects.equals(this.title, _case.title) &&
+        Objects.equals(this.description, _case.description);
   }
 
   @Override
@@ -163,7 +163,7 @@ public class CaseResponseDto {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CaseResponseDto {\n");
+    sb.append("class CaseDto {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");

@@ -1,5 +1,4 @@
 src/main/java/com/dreamcase/app/api/ApiUtil.java
 src/main/java/com/dreamcase/app/api/CasesApi.java
-src/main/java/com/dreamcase/app/dto/CaseRequestDto.java
-src/main/java/com/dreamcase/app/dto/CaseResponseDto.java
+src/main/java/com/dreamcase/app/dto/CaseDto.java
 src/main/java/com/dreamcase/app/dto/ErrorDto.java

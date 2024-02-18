@@ -6,4 +6,4 @@ services:
       - 'POSTGRES_PASSWORD=case_pwd'
       - 'POSTGRES_USER=case_user'
     ports:
-      - '5432'
+      - '5432:5432'
